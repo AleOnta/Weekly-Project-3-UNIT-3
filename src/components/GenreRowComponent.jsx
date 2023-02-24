@@ -8,7 +8,7 @@ const GenreRowComponent = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(SongsFetcherAction(props.toFetch, "https://striveschool-api.herokuapp.com/api/deezer/search?q="));
+    dispatch(SongsFetcherAction(props.toFetch));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
