@@ -4,18 +4,19 @@ import { Container, Row } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LeftNavbarComponent from "./components/LeftNavbarComponent";
 import PlayerComponent from "./components/PlayerComponent";
+import HomepageComponent from "./components/HomepageComponent";
 
 function App() {
   return (
     <BrowserRouter>
       <Container fluid className="h-100 p-0">
-        <LeftNavbarComponent />
-        <Row>
+        <Row className="h-100 m-0 d-flex flex-nowrap">
+          <LeftNavbarComponent />
           <Routes>
-            <Route />
+            <Route path="/" element={<HomepageComponent />} />
           </Routes>
+          <PlayerComponent />
         </Row>
-        <PlayerComponent />
       </Container>
     </BrowserRouter>
   );

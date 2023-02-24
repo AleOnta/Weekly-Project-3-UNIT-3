@@ -1,5 +1,6 @@
 import { Row, Col, InputGroup, Form, Button } from "react-bootstrap";
 import { BsHouseDoorFill, BsBookFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 var Logo = require("../assets/img/Spotify_Logo.png");
 
@@ -14,15 +15,15 @@ const LeftNavbarComponent = () => {
           <Row xs={12} className="d-flex flex-column">
             <Col className="pb-1  d-flex align-items-center">
               <BsHouseDoorFill className="left-nav-icon" />
-              <a href="#home" className="nav-link-custom">
+              <Link to="/" className="nav-link-custom">
                 Home
-              </a>
+              </Link>
             </Col>
             <Col className="pt-1 pb-4 d-flex align-items-center">
               <BsBookFill className="left-nav-icon" />
-              <a href="library" className="nav-link-custom">
+              <Link to="/" className="nav-link-custom">
                 Your Library
-              </a>
+              </Link>
             </Col>
             <Col xs={12} className="d-flex justify-content-center">
               <InputGroup className="mb-3">
