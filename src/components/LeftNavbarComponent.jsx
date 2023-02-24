@@ -13,7 +13,7 @@ const LeftNavbarComponent = () => {
         </Col>
         <Col xs={12} className="p-0 d-flex flex-column justify-content-between left-main-nav">
           <Row xs={12} className="d-flex flex-column">
-            <Col className="pb-1  d-flex align-items-center">
+            <Col className="pb-3  d-flex align-items-center">
               <BsHouseDoorFill className="left-nav-icon" />
               <Link to="/" className="nav-link-custom">
                 Home
@@ -26,7 +26,7 @@ const LeftNavbarComponent = () => {
               </Link>
             </Col>
             <Col xs={12} className="d-flex justify-content-center">
-              <InputGroup className="mb-3">
+              <InputGroup className="mb-3" id="navInput">
                 <Form.Control placeholder="Search" aria-label="Recipient Search" aria-describedby="basic-addon2" />
                 <Button variant="outline-secondary" id="button-addon2">
                   GO
@@ -52,42 +52,3 @@ const LeftNavbarComponent = () => {
   );
 };
 export default LeftNavbarComponent;
-/* <nav class="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between" id="sidebar">
-            <div class="nav-container">
-              <a class="navbar-brand" href="index.html">
-                <img src="logo/Spotify_Logo.png" alt="Spotify_Logo" width="131" height="40">
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <ul>
-                    <li>
-                      <a class="nav-item nav-link" href="./index.html"><i class="fas fa-home fa-lg" aria-hidden="true"></i>&nbsp; Home </a>
-                    </li>
-                    <li>
-                      <a class="nav-item nav-link" href="#"><i class="fas fa-book-open fa-lg" aria-hidden="true"></i>&nbsp; Your Library</a>
-                    </li>
-                    <li>
-                      <div class="input-group mt-3">
-                        <input type="text" class="form-control mb-2" id="searchField" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append" style="margin-bottom: 4%">
-                          <button class="btn btn-outline-secondary btn-sm" type="button" id="button-addon1" onclick="search()">
-                            GO
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="nav-btn">
-              <button class="btn signup-btn" type="button">Sign Up</button>
-              <button class="btn login-btn" type="button">Login</button>
-              <a href="#">Cookie Policy</a> |
-              <a href="#"> Privacy</a>
-            </div>
-          </nav> */

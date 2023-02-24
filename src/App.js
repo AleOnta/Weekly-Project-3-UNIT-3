@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LeftNavbarComponent from "./components/LeftNavbarComponent";
 import PlayerComponent from "./components/PlayerComponent";
 import HomepageComponent from "./components/HomepageComponent";
+import AlbumPageComponent from "./components/AlbumPageComponent";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <LeftNavbarComponent />
           <Routes>
             <Route path="/" element={<HomepageComponent />} />
+            <Route path="/albumpage" element={<AlbumPageComponent />} />
           </Routes>
           <PlayerComponent />
         </Row>
