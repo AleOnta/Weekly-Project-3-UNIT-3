@@ -1,6 +1,6 @@
 /* CSS instructions for the left-nav */
 .left-nav {
-  z-index: 1500;
+  z-index: 1000;
 }
 
 .left-nav-row {
@@ -89,3 +89,32 @@
 }
 
 /* CSS instructions for the player */
+
+.playerContainer {
+  z-index: 100;
+  height: 5.5rem;
+  background-color: #282828;
+}
+
+.playerRow {
+  margin: 0;
+}
+
+.player-icon {
+  z-index: 0;
+  height: 1.4em;
+  width: 1.4em;
+
+  color: rgb(145, 145, 145);
+}
+
+.progress {
+  color: white;
+  background-color: #414141;
+  height: 3px;
+}
+
+.playBar p {
+  margin-bottom: 20px;
+  color: white;
+}

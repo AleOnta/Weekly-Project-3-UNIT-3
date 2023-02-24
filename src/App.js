@@ -3,6 +3,7 @@ import "./App.css";
 import { Container, Row } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LeftNavbarComponent from "./components/LeftNavbarComponent";
+import PlayerComponent from "./components/PlayerComponent";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route />
           </Routes>
         </Row>
+        <PlayerComponent />
       </Container>
     </BrowserRouter>
   );
