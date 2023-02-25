@@ -1,7 +1,7 @@
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAlbumFocusAction } from "../redux/actions";
+import { setAlbumFocusAction, setArtistQueryAction } from "../redux/actions";
 
 const SongCardSearchComponent = ({ song }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,14 @@ const SongCardSearchComponent = ({ song }) => {
         <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
       </Link>
       <p className="d-flex flex-column">
-        <Link>Aritst: {song.artist.name}</Link>
+        <Link
+          to="/artistpage"
+          onClick={() => {
+            dispatch(setArtistQueryAction(song.artist.id));
+          }}
+        >
+          Aritst: {song.artist.name}
+        </Link>
         <Link className="album-cap">Album: {song.album.title}</Link>
       </p>
     </Col>

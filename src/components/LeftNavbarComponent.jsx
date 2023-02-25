@@ -31,7 +31,7 @@ const LeftNavbarComponent = () => {
             </Col>
             <Col className="pt-1 pb-4 d-flex align-items-center">
               <BsBookFill className="left-nav-icon" />
-              <Link to="/" className="nav-link-custom">
+              <Link to="/mylibrary" className="nav-link-custom">
                 Your Library
               </Link>
             </Col>
@@ -48,6 +48,7 @@ const LeftNavbarComponent = () => {
                   variant="outline-secondary"
                   id="button-addon2"
                   onClick={(e) => {
+                    e.preventDefault();
                     dispatch(setQuerySearchAction(queryInput));
                   }}
                 >

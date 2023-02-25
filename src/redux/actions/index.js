@@ -8,10 +8,15 @@ export const SET_ALBUM_FOCUS = "SET_ALBUM_FOCUS";
 export const SET_ALBUM_SONGS = "SET_ALBUM_SONGS";
 export const SET_QUERY_STRING = "SET_QUERY_STRING";
 export const SET_QUERY_RESULT = "SET_QUERY_RESULT";
+export const SET_ARTIST_QUERY = "SET_ARTIST_QUERY";
+export const SET_ARTIST_RESULT = "SET_ARTIST_RESULT";
+export const SET_ARTIST_TRACKS = "SET_ARTIST_TRACKS";
+export const SET_AS_FAVOURITE = "SET_AS_FAVOURITE";
+export const DELETE_FROM_FAVOURITES = "DELETE_FROM_FAVOURITES";
 
 // Actions for the HomePage Reducer
 
-export const SongsFetcherAction = (genre, endpoint) => {
+export const SongsFetcherAction = (genre) => {
   //   e.preventDefault();
   return async (dispatch) => {
     try {
@@ -23,7 +28,7 @@ export const SongsFetcherAction = (genre, endpoint) => {
 
       if (response.ok) {
         const data = await response.json();
-        if (genre === "Rock") {
+        if (genre === "Rock&Roll") {
           dispatch({
             type: ADD_FETCHED_SONGS_ROCK,
             payload: data.data,
@@ -42,7 +47,7 @@ export const SongsFetcherAction = (genre, endpoint) => {
       } else {
         dispatch({
           type: ERROR_ENCOUNTER,
-          payload: "response wasn't ok",
+          payload: "Homepage response wasn't ok",
         });
       }
     } catch (error) {
@@ -70,6 +75,10 @@ export const setAlbumFocusAction = (value) => ({
 export const AlbumSongsFetcher = (albumId) => {
   return async (dispatch) => {
     try {
+      dispatch({
+        type: SET_LOAD_ON,
+      });
+
       const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/album/" + albumId);
 
       if (response.ok) {
@@ -85,7 +94,7 @@ export const AlbumSongsFetcher = (albumId) => {
       } else {
         dispatch({
           type: ERROR_ENCOUNTER,
-          payload: "response wasn't ok",
+          payload: "Album response wasn't ok",
         });
       }
     } catch (error) {
@@ -113,6 +122,10 @@ export const setQuerySearchAction = (value) => ({
 export const QueryFetcher = (query) => {
   return async (dispatch) => {
     try {
+      dispatch({
+        type: SET_LOAD_ON,
+      });
+
       const response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + query);
 
       if (response.ok) {
@@ -123,10 +136,9 @@ export const QueryFetcher = (query) => {
           payload: data,
         });
       } else {
-        console.log("errore nell'else");
         dispatch({
           type: ERROR_ENCOUNTER,
-          payload: "response wasn't ok",
+          payload: "Search fetch response wasn't ok",
         });
       }
     } catch (error) {
@@ -144,3 +156,81 @@ export const QueryFetcher = (query) => {
     }
   };
 };
+
+// Action for the ArtistPage Reducer
+export const setArtistQueryAction = (artist) => ({
+  type: SET_ARTIST_QUERY,
+  payload: artist,
+});
+
+export const ArtistFetcher = (artistId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: SET_LOAD_ON,
+      });
+
+      let response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/artist/" + artistId);
+
+      if (response.ok) {
+        const data = await response.json();
+
+        dispatch({
+          type: SET_ARTIST_RESULT,
+          payload: {
+            name: data.name,
+            followers: data.nb_fan,
+          },
+        });
+      } else {
+        dispatch({
+          type: ERROR_ENCOUNTER,
+          payload: "Artist response wasn't ok",
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: ERROR_ENCOUNTER,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const ArtistSongsFetcher = (artistName) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: SET_LOAD_ON,
+      });
+
+      let response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + artistName);
+
+      if (response.ok) {
+        const data = await response.json();
+
+        dispatch({
+          type: SET_ARTIST_TRACKS,
+          payload: data.data,
+        });
+      } else {
+        dispatch({
+          type: ERROR_ENCOUNTER,
+          payload: "Artist response wasn't ok",
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: ERROR_ENCOUNTER,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+// Actions for the MyLibrary Reducer
+
+export const favouritesAction = (type, payload) => ({
+  type: type,
+  payload: payload,
+});

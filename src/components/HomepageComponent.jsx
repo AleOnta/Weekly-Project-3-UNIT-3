@@ -12,7 +12,10 @@ const HomepageComponent = () => {
   const searchStore = useSelector((state) => state.searchPageStore);
 
   useEffect(() => {
-    dispatch(QueryFetcher(searchStore.query));
+    if (searchStore.query.length > 0) {
+      dispatch(QueryFetcher(searchStore.query));
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchStore.query]);
 
@@ -32,7 +35,7 @@ const HomepageComponent = () => {
             </div>
           </Col>
         )}
-        <GenreRowComponent toFetch="Rock" toMap={store.fetchedSongs.rockSongs} />
+        <GenreRowComponent toFetch="Rock&Roll" toMap={store.fetchedSongs.rockSongs} />
         <GenreRowComponent toFetch="Deep-house" toMap={store.fetchedSongs.deepHouseSongs} />
         <GenreRowComponent toFetch="Hip-hop" toMap={store.fetchedSongs.hipHopSongs} />
       </Row>

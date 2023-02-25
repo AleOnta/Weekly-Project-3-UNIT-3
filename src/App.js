@@ -6,6 +6,8 @@ import LeftNavbarComponent from "./components/LeftNavbarComponent";
 import PlayerComponent from "./components/PlayerComponent";
 import HomepageComponent from "./components/HomepageComponent";
 import AlbumPageComponent from "./components/AlbumPageComponent";
+import ArtistPageComponent from "./components/ArtistPageComponent";
+import MyLibraryComponent from "./components/MyLibraryComponent";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomepageComponent />} />
             <Route path="/albumpage" element={<AlbumPageComponent />} />
+            <Route path="/artistpage" element={<ArtistPageComponent />} />
+            <Route path="/mylibrary" element={<MyLibraryComponent />} />
           </Routes>
           <PlayerComponent />
         </Row>
