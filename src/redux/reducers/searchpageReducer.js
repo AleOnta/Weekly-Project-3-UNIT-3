@@ -1,4 +1,10 @@
-import { ERROR_ENCOUNTER, SET_LOAD_OFF, SET_LOAD_ON, SET_QUERY_RESULT, SET_QUERY_STRING } from "../actions";
+import {
+  ERROR_ENCOUNTER_SEARCH,
+  SET_LOAD_OFF_SEARCH,
+  SET_LOAD_ON_SEARCH,
+  SET_QUERY_RESULT,
+  SET_QUERY_STRING,
+} from "../actions";
 
 const initialState = {
   query: "",
@@ -19,19 +25,19 @@ const searchReducerPage = (state = initialState, action) => {
         ...state,
         queryResult: action.payload.data,
       };
-    case SET_LOAD_ON:
+    case SET_LOAD_ON_SEARCH:
       return {
         ...state,
         isLoading: true,
       };
 
-    case SET_LOAD_OFF:
+    case SET_LOAD_OFF_SEARCH:
       return {
         ...state,
         isLoading: false,
       };
 
-    case ERROR_ENCOUNTER:
+    case ERROR_ENCOUNTER_SEARCH:
       return {
         ...state,
         hasError: action.payload,

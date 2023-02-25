@@ -1,10 +1,10 @@
 import {
-  ERROR_ENCOUNTER,
+  ERROR_ENCOUNTER_ARTIST,
   SET_ARTIST_QUERY,
   SET_ARTIST_RESULT,
   SET_ARTIST_TRACKS,
-  SET_LOAD_OFF,
-  SET_LOAD_ON,
+  SET_LOAD_OFF_ARTIST,
+  SET_LOAD_ON_ARTIST,
 } from "../actions";
 
 const initialState = {
@@ -47,19 +47,19 @@ const artistPageReducer = (state = initialState, action) => {
           artistSongs: action.payload,
         },
       };
-    case SET_LOAD_ON:
+    case SET_LOAD_ON_ARTIST:
       return {
         ...state,
         isLoading: true,
       };
 
-    case SET_LOAD_OFF:
+    case SET_LOAD_OFF_ARTIST:
       return {
         ...state,
         isLoading: false,
       };
 
-    case ERROR_ENCOUNTER:
+    case ERROR_ENCOUNTER_ARTIST:
       return {
         ...state,
         hasError: action.payload,

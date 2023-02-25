@@ -94,6 +94,9 @@
 }
 
 /* CSS instructions for the player */
+.rowPlayerContainer {
+  position: relative;
+}
 
 .playerContainer {
   z-index: 100;
@@ -122,6 +125,30 @@
 .playBar p {
   margin-bottom: 20px;
   color: white;
+}
+
+.playerDetailsContainer {
+  color: white;
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  top: 0;
+}
+
+.playingImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.playerDetails h4 {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.playerDetails p {
+  font-size: 0.7em;
+  white-space: nowrap;
 }
 
 /* CSS instructions for the main navbar */

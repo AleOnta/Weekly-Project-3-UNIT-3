@@ -1,4 +1,10 @@
-import { ERROR_ENCOUNTER, SET_ALBUM_FOCUS, SET_ALBUM_SONGS, SET_LOAD_OFF, SET_LOAD_ON } from "../actions";
+import {
+  ERROR_ENCOUNTER_ALBUM,
+  SET_ALBUM_FOCUS,
+  SET_ALBUM_SONGS,
+  SET_LOAD_OFF_ALBUM,
+  SET_LOAD_ON_ALBUM,
+} from "../actions";
 
 const initialState = {
   albumToFetch: "",
@@ -19,19 +25,19 @@ const albumPageReducer = (state = initialState, action) => {
         ...state,
         fetchedAlbum: action.payload,
       };
-    case SET_LOAD_ON:
+    case SET_LOAD_ON_ALBUM:
       return {
         ...state,
         isLoading: true,
       };
 
-    case SET_LOAD_OFF:
+    case SET_LOAD_OFF_ALBUM:
       return {
         ...state,
         isLoading: false,
       };
 
-    case ERROR_ENCOUNTER:
+    case ERROR_ENCOUNTER_ALBUM:
       return {
         ...state,
         hasError: action.payload,

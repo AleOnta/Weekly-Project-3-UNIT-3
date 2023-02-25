@@ -2,7 +2,13 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BsHeart } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { favouritesAction, setAlbumFocusAction, setArtistQueryAction, SET_AS_FAVOURITE } from "../redux/actions";
+import {
+  favouritesAction,
+  setAlbumFocusAction,
+  setArtistQueryAction,
+  setCurrentlyAction,
+  SET_AS_FAVOURITE,
+} from "../redux/actions";
 
 const SongCardComponent = (props) => {
   const dispatch = useDispatch();
@@ -13,7 +19,7 @@ const SongCardComponent = (props) => {
       {songs.map((song) => {
         return (
           <Col xs={1} sm={2} lg={3} className="text-center songContainer" key={song.id}>
-            <Link to="/albumpage" onClick={(e) => dispatch(setAlbumFocusAction(song.album.id))}>
+            <Link onClick={(e) => dispatch(setCurrentlyAction(song))}>
               <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
             </Link>
             <p className="d-flex flex-column">
@@ -24,7 +30,7 @@ const SongCardComponent = (props) => {
                     dispatch(setArtistQueryAction(song.artist.id));
                   }}
                 >
-                  Aritst: {song.artist.name}
+                  Artist: {song.artist.name}
                 </Link>
                 <BsHeart className="favouriteIcon" onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))} />
               </span>

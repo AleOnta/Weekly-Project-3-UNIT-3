@@ -2,9 +2,9 @@ import {
   ADD_FETCHED_SONGS_DEEPHOUSE,
   ADD_FETCHED_SONGS_HIPHOP,
   ADD_FETCHED_SONGS_ROCK,
-  ERROR_ENCOUNTER,
-  SET_LOAD_OFF,
-  SET_LOAD_ON,
+  ERROR_ENCOUNTER_HOME,
+  SET_LOAD_OFF_HOME,
+  SET_LOAD_ON_HOME,
 } from "../actions";
 
 const initialState = {
@@ -46,19 +46,19 @@ const homePageReducer = (state = initialState, action) => {
         },
       };
 
-    case SET_LOAD_ON:
+    case SET_LOAD_ON_HOME:
       return {
         ...state,
         isLoading: true,
       };
 
-    case SET_LOAD_OFF:
+    case SET_LOAD_OFF_HOME:
       return {
         ...state,
         isLoading: false,
       };
 
-    case ERROR_ENCOUNTER:
+    case ERROR_ENCOUNTER_HOME:
       return {
         ...state,
         hasError: action.payload,

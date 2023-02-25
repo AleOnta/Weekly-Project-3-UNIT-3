@@ -3,7 +3,7 @@ import { BsHouseDoorFill, BsBookFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setQuerySearchAction, SET_QUERY_STRING } from "../redux/actions";
+import { setQuerySearchAction } from "../redux/actions";
 
 var Logo = require("../assets/img/Spotify_Logo.png");
 

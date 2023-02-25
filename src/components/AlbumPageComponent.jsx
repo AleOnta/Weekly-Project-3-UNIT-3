@@ -8,6 +8,7 @@ import SingleSongComponent from "./SingleSongComponent";
 const AlbumPageComponent = () => {
   const albumStore = useSelector((state) => state.albumPageStore);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(AlbumSongsFetcher(albumStore.albumToFetch));
     // eslint-disable-next-line react-hooks/exhaustive-deps
