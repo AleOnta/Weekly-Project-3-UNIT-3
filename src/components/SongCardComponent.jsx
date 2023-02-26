@@ -18,7 +18,7 @@ const SongCardComponent = (props) => {
     <>
       {songs.map((song) => {
         return (
-          <Col xs={1} sm={2} lg={3} className="text-center songContainer" key={song.id}>
+          <Col className="text-center songContainer" key={song.id}>
             <Link onClick={(e) => dispatch(setCurrentlyAction(song))}>
               <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
             </Link>

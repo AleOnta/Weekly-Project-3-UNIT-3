@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { AlbumSongsFetcher } from "../redux/actions";
 import MainNavbarComponent from "./MainNavbarComponent";
@@ -18,7 +18,12 @@ const AlbumPageComponent = () => {
     <Col xs={10} className="mainPage offset-2">
       <Row className="justify-content-center">
         <MainNavbarComponent />
-        {albumStore.fetchedAlbum && (
+        {albumStore.hasError !== "" && (
+          <Col xs={6}>
+            <Alert variant="danger">{"error encountered while loading, error --> " + albumStore.hasError}</Alert>
+          </Col>
+        )}
+        {albumStore.isLoading === false && albumStore.fetchedAlbum && (
           <Col xs={10}>
             <Row className="pb-5">
               <Col md={3} className="text-center pt-5" id="img-container">
@@ -40,6 +45,12 @@ const AlbumPageComponent = () => {
                 </Row>
               </Col>
             </Row>
+          </Col>
+        )}
+        {albumStore.isLoading === true && (
+          <Col xs={10} className="d-flex justify-content-around aling-items-center mt-5 pt-5">
+            <Spinner variant="success" className="spinner my-5" />
+            <Spinner variant="success" className="spinner my-5" />
           </Col>
         )}
       </Row>

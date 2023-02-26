@@ -1,8 +1,16 @@
 import { useEffect } from "react";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ArtistFetcher, ArtistSongsFetcher, setAlbumFocusAction, setArtistQueryAction } from "../redux/actions";
+import { BsHeart } from "react-icons/bs";
+import {
+  ArtistFetcher,
+  ArtistSongsFetcher,
+  favouritesAction,
+  setAlbumFocusAction,
+  setArtistQueryAction,
+  SET_AS_FAVOURITE,
+} from "../redux/actions";
 import MainNavbarComponent from "./MainNavbarComponent";
 
 const ArtistPageComponent = () => {
@@ -38,32 +46,54 @@ const ArtistPageComponent = () => {
           </div>
         </Col>
         <Col xs={10}>
-          <Row>
-            {artistStore.fetchedArtist.artistSongs.map((song) => {
-              return (
-                <Col xs={1} sm={2} lg={3} className="text-center mb-4" key={song.id}>
-                  <Link
-                    to="/albumpage"
-                    className="mainLinks"
-                    onClick={() => dispatch(setAlbumFocusAction(song.album.id))}
-                  >
-                    <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
-                  </Link>
-                  <p className="d-flex flex-column">
+          <Row className="justify-content-center">
+            {artistStore.hasError !== "" && (
+              <Col xs={6}>
+                <Alert variant="danger">
+                  {"encountered an error while searching for the artist, error --> " + artistStore.hasError}
+                </Alert>
+              </Col>
+            )}
+            {artistStore.isLoading === false &&
+              artistStore.fetchedArtist.artistSongs.length > 0 &&
+              artistStore.fetchedArtist.artistSongs.map((song) => {
+                return (
+                  <Col xs={1} sm={2} lg={3} className="text-center mb-4" key={song.id}>
                     <Link
-                      className="track-cap"
-                      to="/artistpage"
-                      onClick={() => {
-                        dispatch(setArtistQueryAction(song.artist.id));
-                      }}
+                      to="/albumpage"
+                      className="mainLinks"
+                      onClick={() => dispatch(setAlbumFocusAction(song.album.id))}
                     >
-                      Track: {song.title}
+                      <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
                     </Link>
-                    <Link className="album-cap">Album: {song.album.title}</Link>
-                  </p>
-                </Col>
-              );
-            })}
+                    <p className="d-flex flex-column">
+                      <span className="link-Button">
+                        <Link
+                          className="track-cap"
+                          to="/artistpage"
+                          onClick={(e) => {
+                            dispatch(setArtistQueryAction(song.artist.id));
+                          }}
+                        >
+                          Track: {song.title}
+                        </Link>
+                        <BsHeart
+                          className="favouriteIcon"
+                          onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))}
+                        />
+                      </span>
+                      <Link className="album-cap">Album: {song.album.title}</Link>
+                    </p>
+                  </Col>
+                );
+              })}
+            {artistStore.isLoading === true && (
+              <Col xs={10} className="my-5 d-flex justify-content-between align-items-center">
+                <Spinner variant="success" className="spinner my-5" />
+                <Spinner variant="success" className="spinner my-5" />
+                <Spinner variant="success" className="spinner my-5" />
+              </Col>
+            )}
           </Row>
         </Col>
       </Row>

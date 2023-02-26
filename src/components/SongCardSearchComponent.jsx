@@ -1,25 +1,30 @@
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setAlbumFocusAction, setArtistQueryAction } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { favouritesAction, setAlbumFocusAction, setArtistQueryAction, SET_AS_FAVOURITE } from "../redux/actions";
+import { BsHeart } from "react-icons/bs";
 
 const SongCardSearchComponent = ({ song }) => {
   const dispatch = useDispatch();
+  const liked = useSelector((state) => state.favourites.favouritesSongs);
 
   return (
-    <Col xs={1} sm={2} lg={3} className="text-center" key={song.id}>
+    <Col className="text-center" key={song.id}>
       <Link to="/albumpage" onClick={() => dispatch(setAlbumFocusAction(song.album.id))}>
         <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
       </Link>
       <p className="d-flex flex-column">
-        <Link
-          to="/artistpage"
-          onClick={() => {
-            dispatch(setArtistQueryAction(song.artist.id));
-          }}
-        >
-          Aritst: {song.artist.name}
-        </Link>
+        <span className="link-Button">
+          <Link
+            to="/artistpage"
+            onClick={(e) => {
+              dispatch(setArtistQueryAction(song.artist.id));
+            }}
+          >
+            Artist: {song.artist.name}
+          </Link>
+          <BsHeart className={"favouriteIcon"} onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))} />
+        </span>
         <Link className="album-cap">Album: {song.album.title}</Link>
       </p>
     </Col>

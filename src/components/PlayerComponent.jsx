@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { BsShuffle, BsSkipBackwardFill, BsFillPlayFill, BsSkipForwardFill, BsArrowRepeat } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,6 @@ const PlayerComponent = () => {
     if (playerStore.onPlay.currentlyPlaying) {
       dispatch(getAllTracks(playerStore.onPlay.currentlyPlaying.album.id));
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerStore.onPlay.currentlyPlaying]);
 

@@ -29,7 +29,7 @@ const MyLibraryComponent = () => {
                       return (
                         <span className="libraryElement" key={song.id - 30}>
                           <BsHeart
-                            className="favouriteIcon"
+                            className="favouriteIcon liked"
                             key={song.id - 20}
                             onClick={() => dispatch(favouritesAction(DELETE_FROM_FAVOURITES, i))}
                           />

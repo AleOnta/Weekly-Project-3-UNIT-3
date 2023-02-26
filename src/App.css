@@ -277,6 +277,10 @@
   color: white;
 }
 
+p.artist-name {
+  color: white;
+}
+
 .mainPage img {
   width: 200px;
   height: 200px;
@@ -289,12 +293,20 @@
 }
 
 .favouriteIcon {
-  color: rgb(60, 211, 60);
+  color: white;
   font-size: 1.2em;
   transition: 0.2s;
   margin-top: 8px;
   margin-left: 10px;
   cursor: pointer;
+}
+
+.favouriteIcon:active {
+  color: rgb(60, 211, 60);
+}
+
+.liked {
+  color: rgb(60, 211, 60);
 }
 
 .favouriteIcon:hover {
@@ -336,4 +348,12 @@
   font-size: 0.9em;
   text-align: center;
   color: white;
+}
+
+.makeItGreen {
+  color: rgb(60, 211, 60);
+}
+
+.spinner {
+  color: rgb(60, 211, 60) !important;
 }
