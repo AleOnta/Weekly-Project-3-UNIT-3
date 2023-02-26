@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import { BsHeart } from "react-icons/bs";
+import { BsXLg } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { DELETE_FROM_FAVOURITES, favouritesAction } from "../redux/actions";
 import MainNavbarComponent from "./MainNavbarComponent";
@@ -28,8 +28,8 @@ const MyLibraryComponent = () => {
                     favouriteList.map((song, i) => {
                       return (
                         <span className="libraryElement" key={song.id - 30}>
-                          <BsHeart
-                            className="favouriteIcon liked"
+                          <BsXLg
+                            className="favouriteIcon close"
                             key={song.id - 20}
                             onClick={() => dispatch(favouritesAction(DELETE_FROM_FAVOURITES, i))}
                           />

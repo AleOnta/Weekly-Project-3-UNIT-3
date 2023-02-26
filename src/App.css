@@ -7,6 +7,12 @@
   right: 0;
 }
 
+@media screen and (max-width: 940px) {
+  .left-nav {
+    display: none;
+  }
+}
+
 .left-nav-row {
   padding: 1em;
   margin: 0;
@@ -22,8 +28,8 @@
 }
 
 .logo {
-  width: 75%;
-  height: 90%;
+  width: 100%;
+  max-width: 190px;
   padding-top: 20px;
   padding-bottom: 30px;
   padding-left: 10px;
@@ -301,10 +307,6 @@ p.artist-name {
   cursor: pointer;
 }
 
-.favouriteIcon:active {
-  color: rgb(60, 211, 60);
-}
-
 .liked {
   color: rgb(60, 211, 60);
 }
@@ -356,4 +358,12 @@ p.artist-name {
 
 .spinner {
   color: rgb(60, 211, 60) !important;
+}
+
+.close {
+  margin: 0;
+}
+
+.close:hover {
+  color: crimson;
 }

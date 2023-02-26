@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Row, Col, Button, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { BsHeart } from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 import {
   ArtistFetcher,
   ArtistSongsFetcher,
@@ -16,6 +16,7 @@ import MainNavbarComponent from "./MainNavbarComponent";
 const ArtistPageComponent = () => {
   const dispatch = useDispatch();
   const artistStore = useSelector((state) => state.artistPageStore);
+  const favourites = useSelector((state) => state.favourites.favouritesId);
 
   useEffect(() => {
     dispatch(ArtistFetcher(artistStore.artistToFetch));
@@ -46,7 +47,7 @@ const ArtistPageComponent = () => {
           </div>
         </Col>
         <Col xs={10}>
-          <Row className="justify-content-center">
+          <Row xs={1} sm={2} lg={3} xl={4} className="justify-content-center">
             {artistStore.hasError !== "" && (
               <Col xs={6}>
                 <Alert variant="danger">
@@ -58,7 +59,7 @@ const ArtistPageComponent = () => {
               artistStore.fetchedArtist.artistSongs.length > 0 &&
               artistStore.fetchedArtist.artistSongs.map((song) => {
                 return (
-                  <Col xs={1} sm={2} lg={3} className="text-center mb-4" key={song.id}>
+                  <Col className="text-center mb-4" key={song.id}>
                     <Link
                       to="/albumpage"
                       className="mainLinks"
@@ -72,13 +73,14 @@ const ArtistPageComponent = () => {
                           className="track-cap"
                           to="/artistpage"
                           onClick={(e) => {
+                            e.preventDefault();
                             dispatch(setArtistQueryAction(song.artist.id));
                           }}
                         >
-                          Track: {song.title}
+                          Track: {song.title_short}
                         </Link>
-                        <BsHeart
-                          className="favouriteIcon"
+                        <BsHeartFill
+                          className={`favouriteIcon ${favourites.includes(song.id) === true && "liked"}`}
                           onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))}
                         />
                       </span>

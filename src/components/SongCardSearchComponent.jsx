@@ -2,11 +2,11 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { favouritesAction, setAlbumFocusAction, setArtistQueryAction, SET_AS_FAVOURITE } from "../redux/actions";
-import { BsHeart } from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 
 const SongCardSearchComponent = ({ song }) => {
   const dispatch = useDispatch();
-  const liked = useSelector((state) => state.favourites.favouritesSongs);
+  const favourites = useSelector((state) => state.favourites.favouritesId);
 
   return (
     <Col className="text-center" key={song.id}>
@@ -23,7 +23,10 @@ const SongCardSearchComponent = ({ song }) => {
           >
             Artist: {song.artist.name}
           </Link>
-          <BsHeart className={"favouriteIcon"} onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))} />
+          <BsHeartFill
+            className={`favouriteIcon ${favourites.includes(song.id) === true && "liked"}`}
+            onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))}
+          />
         </span>
         <Link className="album-cap">Album: {song.album.title}</Link>
       </p>

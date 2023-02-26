@@ -15,6 +15,13 @@ const LeftNavbarComponent = () => {
     setQueryInput(e.target.value);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      dispatch(setQuerySearchAction(queryInput));
+    }
+  };
+
   return (
     <Col xs={3} md={2} className="h-100 p-0 left-nav">
       <Row className="h-100 flex-column left-nav-row">
@@ -43,6 +50,7 @@ const LeftNavbarComponent = () => {
                   aria-describedby="basic-addon2"
                   value={queryInput}
                   onChange={(e) => handleChange(e)}
+                  onKeyDown={(e) => handleKeyDown(e)}
                 />
                 <Button
                   variant="outline-secondary"

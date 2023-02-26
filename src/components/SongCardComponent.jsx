@@ -1,7 +1,7 @@
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BsHeart } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { BsHeartFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import {
   favouritesAction,
   setAlbumFocusAction,
@@ -11,6 +11,7 @@ import {
 } from "../redux/actions";
 
 const SongCardComponent = (props) => {
+  const favourites = useSelector((state) => state.favourites.favouritesId);
   const dispatch = useDispatch();
   const songs = props.toMap.slice(0, 4);
 
@@ -32,7 +33,10 @@ const SongCardComponent = (props) => {
                 >
                   Artist: {song.artist.name}
                 </Link>
-                <BsHeart className="favouriteIcon" onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))} />
+                <BsHeartFill
+                  className={`favouriteIcon ${favourites.includes(song.id) === true && "liked"}`}
+                  onClick={() => dispatch(favouritesAction(SET_AS_FAVOURITE, song))}
+                />
               </span>
               <Link to="/albumpage" className="album-cap" onClick={(e) => dispatch(setAlbumFocusAction(song.album.id))}>
                 Album: {song.album.title}
